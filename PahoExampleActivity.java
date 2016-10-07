@@ -139,12 +139,9 @@ public class PahoExampleActivity extends AppCompatActivity{
         MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
         mqttConnectOptions.setAutomaticReconnect(true);
         mqttConnectOptions.setCleanSession(false);
-
-
-
-
-
-
+	mqttConnectOptions.setAutomaticReconnectInterval(10);
+	mqttConnectOptions.setKeepAliveInterval(30);
+	mqttConnectOptions.setStateMonitorInterval(10);
 
         try {
             //addToHistory("Connecting to " + serverUri);
