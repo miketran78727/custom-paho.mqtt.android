@@ -95,6 +95,9 @@ public class PahoExampleActivity extends AppCompatActivity{
 
             @Override
             public void monitor(Properties stateProps) {
+
+		Long created = (Long) stateProps.get("created");
+		DateTime dtCreated = new DateTime(created.longValue());
                 
 		Boolean connected = (Boolean) stateProps.get("connected");
 		Boolean resting = (Boolean) stateProps.get("resting");
@@ -111,12 +114,17 @@ public class PahoExampleActivity extends AppCompatActivity{
 		Long lastInboundActivity = (Long) stateProps.get("lastInboundActivity");
 		DateTime dtLastInbound = new DateTime(lastInboundActivity.longValue());
 
-		addToHistory("monitor: connected(" + connected 
+		Long lastReconnectActivity = (Long) stateProps.get("lastReconnectActivity");
+		DateTime dtLastReconnect = new DateTime(lastReconnectActivity.longValue());
+
+		addToHistory("monitor: created(" + dtCreated 
+				+ ") connected(" + connected
 				+ ") resting(" + resting
 				+ ") lastConnected(" + dtLastConnected
 				+ ") lastPing (" + dtLastPing 
 				+ ") lastOutboundActivity (" + dtLastOutbound
 				+ ") lastInboundActivity (" + dtLastInbound
+				+ ") lastReconnectActivity (" + dtLastReconnect
 				+ ")");
             }
 
